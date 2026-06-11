@@ -36,7 +36,7 @@ Can a user plausibly deny an action when they should be able to? Some systems ov
 Can an observer detect that a record exists, even without seeing its contents? Existence alone may be sensitive (healthcare, dating apps).
 
 ### Disclosure
-Standard confidentiality breach — data accessed by the wrong party.
+Standard confidentiality breach, data accessed by the wrong party.
 
 ### Unawareness
 Does the user understand what data is collected, how it's used, with whom it's shared? Dark patterns and complex consent UIs fail here.
@@ -74,6 +74,6 @@ Status:       Open
 
 ## Pitfalls
 
-- Assuming "anonymized" means "no longer personal data" — almost always wrong under GDPR.
+- Assuming "anonymized" means "no longer personal data", almost always wrong under GDPR.
 - Treating LINDDUN as a legal exercise instead of an engineering one. The threats are technical; the regulations make them mandatory to address.
 - Skipping the Unawareness category because it's about UX. UX is part of privacy.

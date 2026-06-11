@@ -19,7 +19,7 @@ PASTA is heavier-weight than STRIDE/LINDDUN. Useful for high-stakes systems wher
 - Use cases (what users do).
 - Data flows for each use case.
 - Authentication / authorization paths.
-- Trust boundaries — where data crosses from less trusted to more trusted contexts.
+- Trust boundaries, where data crosses from less trusted to more trusted contexts.
 
 ## Stage 4: Threat analysis
 
@@ -32,13 +32,13 @@ PASTA is heavier-weight than STRIDE/LINDDUN. Useful for high-stakes systems wher
 - Known vulnerabilities in stack components (CVE scans).
 - Custom code review findings (SAST, manual).
 - Configuration weaknesses (CIS benchmarks, cloud baselines).
-- Cross-reference with the threat actor capabilities — which vulnerabilities are reachable for which actors?
+- Cross-reference with the threat actor capabilities, which vulnerabilities are reachable for which actors?
 
 ## Stage 6: Attack modeling
 
 - Attack trees: for each high-value asset, decompose how an attacker could reach it.
 - Or kill chains: mapping each step of an attack against your defenses.
-- Identify chokepoints — single defenses where multiple attack paths converge. These are high-value to harden.
+- Identify chokepoints, single defenses where multiple attack paths converge. These are high-value to harden.
 
 ## Stage 7: Risk and impact analysis
 

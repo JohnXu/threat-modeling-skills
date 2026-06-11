@@ -6,18 +6,18 @@ Seven worksheets covering the methodologies people actually use for threat model
 
 Every worksheet has three parts:
 
-1. **Scope and when to use** — what kind of system or analysis the methodology fits
-2. **Template** — the actual worksheet, fillable
-3. **Pitfalls** — failure modes the worksheet doesn't prevent
+1. **Scope and when to use**, what kind of system or analysis the methodology fits
+2. **Template**, the actual worksheet, fillable
+3. **Pitfalls**, failure modes the worksheet doesn't prevent
 
 ## Worked example structure
 
 Every example has four parts:
 
-1. **System description and DFD** — the system being modeled, with data flows
-2. **Threats** — applied to the methodology in question
-3. **Top mitigations** — ordered, with effort and impact estimates
-4. **Pitfalls noticed** — what was hard, what got missed in the first pass
+1. **System description and DFD**, the system being modeled, with data flows
+2. **Threats**, applied to the methodology in question
+3. **Top mitigations**, ordered, with effort and impact estimates
+4. **Pitfalls noticed**, what was hard, what got missed in the first pass
 
 ## Contents
 
@@ -47,7 +47,7 @@ Every example has four parts:
 
 Pick a methodology that matches the question you have. STRIDE for "what can go wrong with this component"; attack trees for "how could someone achieve this specific bad outcome"; LINDDUN if privacy is the point; PASTA if you need leadership to fund mitigations.
 
-The worked examples are not templates to copy — they're examples of completed output, included so you know what "done" looks like for each methodology before you start.
+The worked examples are not templates to copy, they're examples of completed output, included so you know what "done" looks like for each methodology before you start.
 
 ## Contributing
 

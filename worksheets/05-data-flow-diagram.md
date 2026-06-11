@@ -5,7 +5,7 @@ A DFD is the foundation document for most threat modeling. Get this right and ST
 ## Notation
 
 - **External entity** (rectangle): people or systems outside your control that interact with your system.
-- **Process** (circle / rounded rectangle): something that transforms data — a service, function, container.
+- **Process** (circle / rounded rectangle): something that transforms data, a service, function, container.
 - **Data store** (open-ended rectangle / parallel lines): databases, queues, file systems, caches.
 - **Data flow** (arrow): data moving between elements, labeled with what's flowing.
 - **Trust boundary** (dashed line): where the trust level changes. Crossing a boundary often introduces threats.
@@ -78,11 +78,11 @@ Threats specific to crossings (feed into STRIDE).
 
 ## What to look for
 
-- Flows missing labels — undocumented data movement is a smell.
+- Flows missing labels, undocumented data movement is a smell.
 - Trust boundaries that are crossed without authentication / encryption.
 - Data stores accessed by many processes without clear ownership.
-- External entities with high access — third-party SaaS that holds copies of your data.
-- "Magic" flows — diagrams with arrows pointing into clouds labeled "infrastructure".
+- External entities with high access, third-party SaaS that holds copies of your data.
+- "Magic" flows, diagrams with arrows pointing into clouds labeled "infrastructure".
 
 ## Maintenance
 
@@ -92,11 +92,11 @@ Threats specific to crossings (feed into STRIDE).
 
 ## Pitfalls
 
-- Decomposing too far on day one — produces diagrams nobody reads.
-- Decomposing too little — Level 0 alone doesn't surface real threats.
-- Missing operator / admin paths — these are often where compromise actually starts.
-- Missing batch / async flows — queues and scheduled jobs hide threats.
+- Decomposing too far on day one, produces diagrams nobody reads.
+- Decomposing too little, Level 0 alone doesn't surface real threats.
+- Missing operator / admin paths, these are often where compromise actually starts.
+- Missing batch / async flows, queues and scheduled jobs hide threats.
 
 ## Output
 
-A diagram (any tool — draw.io, OmniGraffle, text-based with Mermaid). Plus written documentation per the templates above. The DFD feeds STRIDE/LINDDUN/PASTA.
+A diagram (any tool, draw.io, OmniGraffle, text-based with Mermaid). Plus written documentation per the templates above. The DFD feeds STRIDE/LINDDUN/PASTA.

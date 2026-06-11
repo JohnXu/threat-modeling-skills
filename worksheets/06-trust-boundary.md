@@ -1,6 +1,6 @@
 # Trust Boundary Worksheet
 
-A trust boundary is a line where the trust level of data changes. Most security failures happen at boundaries — data trusted on one side enters the other side without re-validation.
+A trust boundary is a line where the trust level of data changes. Most security failures happen at boundaries, data trusted on one side enters the other side without re-validation.
 
 ## Common trust boundaries
 
@@ -91,9 +91,9 @@ Threats specific to this boundary:
 
 ## Pitfalls
 
-- "Internal network is trusted" — modern thinking is zero trust; treat internal flows the way you'd treat external.
+- "Internal network is trusted", modern thinking is zero trust; treat internal flows the way you'd treat external.
 - Boundary defined but not enforced consistently. Adding a control on one path while leaving another path open is common.
-- Boundary missed entirely — third-party SaaS holding your data is a boundary even if your network diagram doesn't show it as one.
+- Boundary missed entirely, third-party SaaS holding your data is a boundary even if your network diagram doesn't show it as one.
 
 ## Output
 

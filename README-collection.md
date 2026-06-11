@@ -26,7 +26,7 @@ For a focused review: pick the worksheet that fits the question (privacy → LIN
 
 For a full system review: start with the DFD worksheet, layer STRIDE on each component, layer LINDDUN if personal data is in scope, then attack-tree the highest-value assets.
 
-The worked examples show finished outputs and the kind of findings the process produces. They are illustrative, not prescriptive — your system's threats are specific to your system.
+The worked examples show finished outputs and the kind of findings the process produces. They are illustrative, not prescriptive, your system's threats are specific to your system.
 
 ## Threat modeling as a practice
 

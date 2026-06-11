@@ -87,7 +87,7 @@ Mitigation plan:
 
 ## Pitfalls
 
-- "Who would do that?" — wrong question. Document the abuse case and decide on mitigation; if you decide not to mitigate, it's an accepted risk, not a non-issue.
+- "Who would do that?", wrong question. Document the abuse case and decide on mitigation; if you decide not to mitigate, it's an accepted risk, not a non-issue.
 - Limiting abuse cases to external attackers. Insiders and compromised accounts behave differently and produce different abuse cases.
 - One pass and done. Add abuse cases to your sprint review for new features.
 

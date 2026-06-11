@@ -1,6 +1,6 @@
 # Worked Example: IoT Device
 
-A consumer IoT device — network-connected sensor with cloud-hosted backend.
+A consumer IoT device, network-connected sensor with cloud-hosted backend.
 
 ## System summary
 

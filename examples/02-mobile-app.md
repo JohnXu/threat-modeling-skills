@@ -83,4 +83,4 @@ New trust boundaries:
 
 - A debug log was leaving session tokens in the device console accessible via plug-in tools.
 - Crash reporting service was capturing user PII in stack traces (fixed with redaction filter).
-- The "biometric login" actually didn't gate the API token, only the UI — bypassable by extracting the token.
+- The "biometric login" actually didn't gate the API token, only the UI, bypassable by extracting the token.

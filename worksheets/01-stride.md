@@ -51,9 +51,9 @@ Status:       Open
 
 ## Pitfalls
 
-- Treating STRIDE as a checkbox: "S — done" without thinking through specific spoofing vectors. Force yourself to write at least one concrete threat per cell.
+- Treating STRIDE as a checkbox: "S, done" without thinking through specific spoofing vectors. Force yourself to write at least one concrete threat per cell.
 - Stopping at obvious threats. The valuable findings come from "what would a creative attacker do here that we haven't seen yet".
-- Assigning everything to "the security team" — threats need component-owner accountability.
+- Assigning everything to "the security team", threats need component-owner accountability.
 - Modeling perfect attackers. Use a realistic attacker profile: capabilities, motivations, access.
 
 ## Output
