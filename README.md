@@ -70,6 +70,10 @@ Reference collections:
 - [api-security-audit-checklist](https://github.com/0xelitesystem/api-security-audit-checklist)
 - [secrets-leak-response-runbook](https://github.com/0xelitesystem/secrets-leak-response-runbook)
 
+## More
+
+Part of a catalog of single-file browser tools and plain-language references, all MIT licensed and dependency-free: [0xelitesystem.github.io](https://0xelitesystem.github.io/). Built by [elitesystem.ai](https://elitesystem.ai).
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
