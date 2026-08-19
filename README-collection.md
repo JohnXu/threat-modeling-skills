@@ -22,7 +22,7 @@ Threat modeling worksheets and worked examples. Worksheets give you the structur
 
 ## How to use
 
-For a focused review: pick the worksheet that fits the question (privacy → LINDDUN, attacker reasoning → attack tree, new feature → abuse case).
+For a focused review: pick the worksheet that fits the question (privacy -> LINDDUN, attacker reasoning -> attack tree, new feature -> abuse case).
 
 For a full system review: start with the DFD worksheet, layer STRIDE on each component, layer LINDDUN if personal data is in scope, then attack-tree the highest-value assets.
 

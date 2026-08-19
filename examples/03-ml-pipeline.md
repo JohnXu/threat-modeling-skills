@@ -32,9 +32,9 @@ Stores:
   - Inference logs
 
 Trust boundaries:
-  - Customer ↔ ingestion
-  - Training environment ↔ inference environment
-  - Model registry ↔ inference (consume artifacts)
+  - Customer <-> ingestion
+  - Training environment <-> inference environment
+  - Model registry <-> inference (consume artifacts)
 ```
 
 ## ML-specific threats

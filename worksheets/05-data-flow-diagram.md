@@ -39,11 +39,11 @@ System:
   - <Your application name>
 
 Major flows:
-  - End users  →  app: HTTPS requests, credentials, user data
-  - App  →  end users: HTTPS responses, session cookies
-  - App  →  Stripe: API calls (charge, refund), customer PII
-  - SendGrid  →  app: webhook callbacks
-  - Admins  →  app: HTTPS, MFA-required
+  - End users  ->  app: HTTPS requests, credentials, user data
+  - App  ->  end users: HTTPS responses, session cookies
+  - App  ->  Stripe: API calls (charge, refund), customer PII
+  - SendGrid  ->  app: webhook callbacks
+  - Admins  ->  app: HTTPS, MFA-required
 ```
 
 ### Level 1

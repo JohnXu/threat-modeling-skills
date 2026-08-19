@@ -32,11 +32,11 @@ Stores:
   - Firmware artifact storage
 
 Trust boundaries:
-  - Device ↔ cloud
-  - Mobile app ↔ device (during pairing)
-  - LAN ↔ device
-  - Voice assistant ↔ device control API
-  - User ↔ physical device
+  - Device <-> cloud
+  - Mobile app <-> device (during pairing)
+  - LAN <-> device
+  - Voice assistant <-> device control API
+  - User <-> physical device
 ```
 
 ## IoT-specific threats
