@@ -4,16 +4,16 @@ A trust boundary is a line where the trust level of data changes. Most security 
 
 ## Common trust boundaries
 
-- Internet ↔ your perimeter
-- DMZ ↔ internal network
-- Application server ↔ database
-- Tenant A's data ↔ tenant B's data (in multi-tenant systems)
-- Production ↔ non-production
-- User mode ↔ kernel mode (for OS-level threat models)
-- Authenticated ↔ unauthenticated user
-- Standard user ↔ admin user
-- Your code ↔ third-party libraries
-- Your infrastructure ↔ vendor SaaS holding your data
+- Internet <-> your perimeter
+- DMZ <-> internal network
+- Application server <-> database
+- Tenant A's data <-> tenant B's data (in multi-tenant systems)
+- Production <-> non-production
+- User mode <-> kernel mode (for OS-level threat models)
+- Authenticated <-> unauthenticated user
+- Standard user <-> admin user
+- Your code <-> third-party libraries
+- Your infrastructure <-> vendor SaaS holding your data
 
 ## Per-boundary worksheet
 
@@ -63,27 +63,27 @@ Threats specific to this boundary:
 
 ## Patterns for common boundaries
 
-### Internet ↔ perimeter
+### Internet <-> perimeter
 - TLS termination at WAF/LB
 - Authentication at API gateway
 - Rate limiting per IP and per user
 - Bot management
 - Geo-blocking where appropriate
 
-### App server ↔ database
+### App server <-> database
 - Per-app credentials, not shared
 - Network ACL: only app servers can reach DB
 - Least-privilege DB user (no DDL, no SUPER)
 - Connection encryption
 - Query parameterization (boundary input validation)
 
-### Tenant ↔ tenant
+### Tenant <-> tenant
 - Row-level security or schema-per-tenant
 - Tenant ID validation on every query
 - Encryption keys scoped per tenant where data sensitivity warrants
 - Test cases for cross-tenant access attempts
 
-### Standard user ↔ admin
+### Standard user <-> admin
 - Step-up authentication for admin actions
 - Separate authentication context (session re-issued on role change)
 - Audit log for every admin action

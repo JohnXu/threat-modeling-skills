@@ -24,7 +24,7 @@ External:
   - Auth0 (OIDC)
 
 Processes:
-  - Frontend (CloudFront → React SPA)
+  - Frontend (CloudFront -> React SPA)
   - API gateway (ALB)
   - API service (containers)
   - Background workers (queue consumers)
@@ -36,12 +36,12 @@ Stores:
   - S3 (uploaded files, exports)
 
 Trust boundaries:
-  - Internet ↔ CloudFront/ALB
-  - ALB ↔ API service (VPC)
-  - API service ↔ data stores (private subnet)
-  - Tenant A ↔ Tenant B (within shared infrastructure)
-  - Standard user ↔ tenant admin
-  - Tenant admin ↔ internal staff
+  - Internet <-> CloudFront/ALB
+  - ALB <-> API service (VPC)
+  - API service <-> data stores (private subnet)
+  - Tenant A <-> Tenant B (within shared infrastructure)
+  - Standard user <-> tenant admin
+  - Tenant admin <-> internal staff
 ```
 
 ## Threats (selected high-priority via STRIDE)

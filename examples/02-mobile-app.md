@@ -29,9 +29,9 @@ New stores:
   - Optional: SQLite database on device (offline mode)
 
 New trust boundaries:
-  - User device ↔ network ↔ server
-  - App sandbox ↔ rest of device (other apps, OS)
-  - Authenticated app session ↔ unauthenticated reinstall
+  - User device <-> network <-> server
+  - App sandbox <-> rest of device (other apps, OS)
+  - Authenticated app session <-> unauthenticated reinstall
 ```
 
 ## Mobile-specific threats

@@ -30,9 +30,9 @@ Stores:
   - CI artifacts (logs, plans)
 
 Trust boundaries:
-  - Engineer laptops ↔ Git host
-  - Git host ↔ CI service
-  - CI runner ↔ AWS
+  - Engineer laptops <-> Git host
+  - Git host <-> CI service
+  - CI runner <-> AWS
   - Per-environment isolation
 ```
 
