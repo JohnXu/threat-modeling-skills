@@ -49,6 +49,40 @@ Pick a methodology that matches the question you have. STRIDE for "what can go w
 
 The worked examples are not templates to copy, they're examples of completed output, included so you know what "done" looks like for each methodology before you start.
 
+## Use as agent skills
+
+Each worksheet is also packaged as an [Agent Skill](https://agentskills.io/specification) under [`skills/`](skills/), a `SKILL.md` per methodology that a coding agent (Claude Code, GitHub Copilot CLI, Codex, Gemini CLI, and other harnesses that read `~/.agents/skills/`) can discover and apply automatically when a matching task comes up.
+
+| Skill | Triggers on |
+|-------|-------------|
+| [threat-model-stride](skills/threat-model-stride/SKILL.md) | Per-component threat analysis, "run STRIDE" |
+| [threat-model-linddun](skills/threat-model-linddun/SKILL.md) | Privacy analysis for systems handling personal data, "run LINDDUN" |
+| [threat-model-pasta](skills/threat-model-pasta/SKILL.md) | Full business-risk-driven review, compliance/M&A diligence, "run PASTA" |
+| [threat-model-attack-tree](skills/threat-model-attack-tree/SKILL.md) | Decomposing how an attacker reaches one specific goal |
+| [threat-model-dfd](skills/threat-model-dfd/SKILL.md) | Building/updating a data flow diagram before other analysis |
+| [threat-model-trust-boundary](skills/threat-model-trust-boundary/SKILL.md) | Documenting a specific trust-level crossing |
+| [threat-model-abuse-case](skills/threat-model-abuse-case/SKILL.md) | Attacker's-eye mirror of a feature's use cases |
+
+### Install
+
+Requires Node.js (used only to run `npx degit`, which fetches a folder without cloning git history). Installs into `~/.agents/skills` by default, without touching any other skills already installed there.
+
+macOS/Linux:
+
+```bash
+npx --yes degit JohnXu/threat-modeling-skills/scripts /tmp/tms-scripts --force
+bash /tmp/tms-scripts/install-skills.sh
+```
+
+Windows (PowerShell):
+
+```powershell
+npx --yes degit JohnXu/threat-modeling-skills/scripts $env:TEMP\tms-scripts --force
+& "$env:TEMP\tms-scripts\install-skills.ps1"
+```
+
+To install only specific skills, pass their names as arguments (`install-skills.sh threat-model-stride threat-model-linddun`, or `-Skills threat-model-stride,threat-model-linddun` on PowerShell). Use `--dir` / `-Dir` to install somewhere other than `~/.agents/skills` (e.g. `~/.claude/skills` for Claude-only setups).
+
 ## Contributing
 
 If you've used a methodology not covered here in production work, open a PR with a worksheet and at least one worked example. Worked examples are valued more than worksheets; methodologies have plenty of papers, applied examples are scarcer.
