@@ -66,7 +66,7 @@ Each worksheet is also packaged as an [Agent Skill](https://agentskills.io/speci
 ### Install
 
 
-Common command in IDE, follow IDE install step, select target skills (select), select AI target tool
+Common command in IDE, follow IDE install step, select target skills (suggest to select all 7 skills), select AI target tool
 ```Windows IDE
 npx skills add https://github.com/JohnXu/threat-modeling-skills
 ```
