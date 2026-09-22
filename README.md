@@ -65,8 +65,11 @@ Each worksheet is also packaged as an [Agent Skill](https://agentskills.io/speci
 
 ### Install
 
+
 common command in IDE, follow IDE install step, select skills, select AI target tool
+```IDE
 npx skills add https://github.com/JohnXu/threat-modeling-skills
+```
 
 Requires Node.js (used only to run `npx degit`, which fetches a folder without cloning git history). Installs into `~/.agents/skills` by default, without touching any other skills already installed there.
 
