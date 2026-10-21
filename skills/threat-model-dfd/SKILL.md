@@ -112,4 +112,4 @@ Threats specific to crossings (feed into STRIDE).
 
 ## Output
 
-A diagram (any tool: draw.io, OmniGraffle, text-based with Mermaid) plus written documentation per the templates above. The DFD feeds STRIDE/LINDDUN/PASTA.
+A diagram (any tool: draw.io, OmniGraffle, text-based with Mermaid) plus written documentation per the templates above. File export (OWASP Threat Dragon, etc.) and PDF are handled by `threat-model-output`. The DFD feeds STRIDE/LINDDUN/PASTA.

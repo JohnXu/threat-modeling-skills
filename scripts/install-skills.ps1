@@ -5,7 +5,7 @@
 
 .EXAMPLE
     ./scripts/install-skills.ps1
-    Installs all seven skills into $HOME/.agents/skills
+    Installs all skills (the seven methodology skills plus threat-model-output) into $HOME/.agents/skills
 
 .EXAMPLE
     ./scripts/install-skills.ps1 -Dir C:\custom\path -Skills threat-model-stride,threat-model-linddun
@@ -33,11 +33,15 @@ $AllSkills = @(
     "threat-model-attack-tree",
     "threat-model-dfd",
     "threat-model-trust-boundary",
-    "threat-model-abuse-case"
+    "threat-model-abuse-case",
+    "threat-model-output"
 )
 
 if (-not $Skills -or $Skills.Count -eq 0) {
     $Skills = $AllSkills
+} elseif ($Skills -notcontains "threat-model-output") {
+    # Entry point that asks (once) about DFD/report output.
+    $Skills = $Skills + "threat-model-output"
 }
 
 if (-not (Get-Command npx -ErrorAction SilentlyContinue)) {

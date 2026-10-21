@@ -62,6 +62,16 @@ Each worksheet is also packaged as an [Agent Skill](https://agentskills.io/speci
 | [threat-model-dfd](skills/threat-model-dfd/SKILL.md) | Building/updating a data flow diagram before other analysis |
 | [threat-model-trust-boundary](skills/threat-model-trust-boundary/SKILL.md) | Documenting a specific trust-level crossing |
 | [threat-model-abuse-case](skills/threat-model-abuse-case/SKILL.md) | Attacker's-eye mirror of a feature's use cases |
+| [threat-model-output](skills/threat-model-output/SKILL.md) | Entry point for any threat-modeling request: asks once whether to generate a DFD file and a report (PDF/Word), then produces them |
+
+### DFD and report output
+
+At the start of a threat-modeling session the agent asks **once**: **generate a DFD file?** and **generate a report?** (format: PDF or Word). The individual methodology skills contain no such questions.
+
+- DFD: defaults to an [OWASP Threat Dragon](https://github.com/OWASP/threat-dragon) v2 `.json` model (elements, flows, trust boundaries, and the threats found, openable in Threat Dragon). A Microsoft Threat Modeling Tool `.tm7` file is also available (requires MTMT installed and a template model saved from it; MTMT then generates the threats itself), as are Mermaid, draw.io, PlantUML, and Graphviz DOT.
+- Report: renders the Markdown threat model to PDF or Word (.docx).
+
+`threat-model-output` is a single `SKILL.md` with no bundled scripts; the agent writes the files itself using the verified formats it contains. PDF output needs `pandoc` (or the Python `markdown` package) and Edge, Chrome, or Chromium; Word needs `pandoc`; the `.tm7` output needs Microsoft Threat Modeling Tool installed and a template model saved from it.
 
 ### Install
 
@@ -81,7 +91,7 @@ npx --yes degit JohnXu/threat-modeling-skills/scripts $env:TEMP\tms-scripts --fo
 & "$env:TEMP\tms-scripts\install-skills.ps1"
 ```
 
-To install only specific skills, pass their names as arguments (`install-skills.sh threat-model-stride threat-model-linddun`, or `-Skills threat-model-stride,threat-model-linddun` on PowerShell). Use `--dir` / `-Dir` to install somewhere other than `~/.agents/skills` (e.g. `~/.claude/skills` for Claude-only setups).
+To install only specific skills, pass their names as arguments (`install-skills.sh threat-model-stride threat-model-linddun`, or `-Skills threat-model-stride,threat-model-linddun` on PowerShell); `threat-model-output` is added automatically because it is the entry point that asks about DFD/report output. Use `--dir` / `-Dir` to install somewhere other than `~/.agents/skills` (e.g. `~/.claude/skills` for Claude-only setups).
 
 ## Contributing
 

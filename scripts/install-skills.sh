@@ -22,6 +22,7 @@ ALL_SKILLS=(
   threat-model-dfd
   threat-model-trust-boundary
   threat-model-abuse-case
+  threat-model-output
 )
 
 SKILLS=()
@@ -45,6 +46,12 @@ done
 
 if [[ ${#SKILLS[@]} -eq 0 ]]; then
   SKILLS=("${ALL_SKILLS[@]}")
+else
+  # Entry point that asks (once) about DFD/report output.
+  case " ${SKILLS[*]} " in
+    *" threat-model-output "*) ;;
+    *) SKILLS+=(threat-model-output) ;;
+  esac
 fi
 
 if ! command -v npx >/dev/null 2>&1; then
