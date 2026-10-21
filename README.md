@@ -75,6 +75,12 @@ At the start of a threat-modeling session the agent asks **once**: **generate a 
 
 ### Install
 
+
+Common command in IDE, follow IDE install step, select target skills (suggest to select all 7 skills), select AI target tool
+```IDE
+npx skills add https://github.com/JohnXu/threat-modeling-skills
+```
+
 Requires Node.js (used only to run `npx degit`, which fetches a folder without cloning git history). Installs into `~/.agents/skills` by default, without touching any other skills already installed there.
 
 macOS/Linux:
