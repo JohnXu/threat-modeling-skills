@@ -20,7 +20,19 @@ Nothing here depends on bundled scripts: write the files yourself, following the
 
 Ask these three questions, one at a time (use the `ask_user` tool when available, otherwise ask in chat). Skip a question only if the user already answered it in their request or earlier in the session. Do not invent other questions or other choices.
 
-**Multi-select:** the DFD format, the report format and the methodology questions must let the user pick several options. Turn on the ask tool's multi-select option (e.g. `multiSelect: true` in VS Code's `vscode_askQuestions` and Claude Code's `AskUserQuestion`). If the tool has no multi-select option, ask that question in chat instead, listing the choices and saying the user can reply with several, comma-separated (e.g. "STRIDE, LINDDUN"). Never present these as single-choice buttons.
+**Multi-select:** the DFD format, the report format and the methodology questions must let the user pick several options. Writing "multi-select allowed" in the question text does not create checkboxes. Use the ask tool for these only if its parameter schema has a real multi-select field (e.g. `multiSelect: true` in VS Code's `vscode_askQuestions` and Claude Code's `AskUserQuestion`), and set it. Copilot CLI's `ask_user` has no such field and returns after one click, so with it (or any single-choice tool) ask these questions as a plain chat message instead, as a numbered list, and wait for the reply, e.g.:
+
+```
+Which threat-modeling methodologies should be applied? Reply with one or more numbers, comma-separated (default: 1).
+1. STRIDE (Recommended)
+2. LINDDUN
+3. PASTA
+4. Attack tree
+5. Abuse case
+6. Trust boundary
+```
+
+The Yes/No questions can still use single-choice buttons.
 
 1. **"Generate a DFD file?"** — choices: `Yes` / `No`.
    If Yes, ask the format — choices: `OWASP Threat Dragon (.json) (Recommended, default)`, `Microsoft Threat Modeling Tool (.tm7)`, `Mermaid (.mmd)`, `draw.io (.drawio)`, `PlantUML (.puml)`, `Graphviz DOT (.dot)`. More than one may be chosen. If the user just says "yes" without a format, use Threat Dragon. If the request is itself to build a DFD, do not ask yes/no; ask only the format.
