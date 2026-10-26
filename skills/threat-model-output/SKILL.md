@@ -130,9 +130,28 @@ Tell the user how to open each file, and reference the DFD file(s) from the Mark
 
 ## Step 4 — Generate the report (only if answered Yes)
 
-Do this last, after the Markdown is final and the DFD references are in place. Describe the DFD in the report as tables (elements, flows, boundaries): Mermaid code blocks are not rendered in PDF/Word.
+Do this last, after the Markdown is final and the DFD references are in place.
 
-- **Word**: `pandoc <slug>-threat-model.md -f gfm -o <slug>-threat-model.docx --metadata title="<title>"` (needs `pandoc`).
+### 4a. Put a DFD picture in the report
+
+Always include a rendered DFD image in the report, whether or not a DFD file was requested (build the neutral model of 3a if it does not exist yet). Mermaid code blocks are not rendered in PDF/Word, so never rely on them. Keep the elements / flows / boundaries tables as well, right after the image, as its text description.
+
+1. If Graphviz is on PATH (`dot -V` succeeds), write the DOT of 3d and run `dot -Tsvg <slug>-dfd.dot -o <slug>-dfd.svg` (and `-Tpng -Gdpi=150 -o <slug>-dfd.png` for Word).
+2. Otherwise draw `<slug>-dfd.svg` yourself from the neutral model, with no external tools:
+   - Use the auto-layout of 3a (positions, sizes, boundary boxes). Set the `<svg>` `width`/`height`/`viewBox` to the bounding box of everything plus 40 px.
+   - Define an arrowhead once: `<defs><marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>`.
+   - Draw in this order so boundaries sit behind: boundaries (`<rect rx="8" fill="none" stroke="#CC0000" stroke-dasharray="6,4"/>` with the name as `<text>` at the top-left inside), then flows, then elements.
+   - Actor: `<rect>` with a thin stroke and light fill. Process: `<circle>` (or `<ellipse>`) inscribed in its box. Store: two horizontal lines at the top and bottom of its box (no side lines). The name is centered `<text>`; wrap long names onto 2 lines with `<tspan>`.
+   - Flow: a path from the edge of the source shape to the edge of the target shape (the same port rule as 3c: East/West if the horizontal gap is larger, otherwise South/North), `marker-end="url(#arrow)"`. Bow flows between the same pair apart with a quadratic curve (`Q`), control point offset `(k - (n-1)/2) * 60` px perpendicular to the line. Label `Name (PROTOCOL)` at the curve's midpoint on a white background (`paint-order="stroke" stroke="#fff" stroke-width="4"`).
+   - Elements or flows with an `Open` threat: stroke red, width 2.5, matching Threat Dragon.
+   - Font `Segoe UI, Arial, sans-serif`, 12 px; XML-escape all text.
+3. For Word, also make a PNG: `<browser> --headless --disable-gpu --no-sandbox --user-data-dir=<temp dir> --hide-scrollbars --window-size=<svg width>,<svg height> --screenshot=<slug>-dfd.png <file:///path/to/<slug>-dfd.svg>` (browser candidates below). If no browser is available, use the SVG (Word 2016+ shows it).
+
+Reference the image in the Markdown at the top of the DFD section: `![Data flow diagram](<slug>-dfd.svg)`. In the PDF, embed the SVG inline in the HTML (paste the `<svg>` markup, or a `data:image/svg+xml;base64,` `<img>`), so the PDF does not depend on relative paths. Add CSS `img,svg{max-width:100%;height:auto} figure{page-break-inside:avoid}`. Open the result and confirm the image appears before claiming success.
+
+### 4b. Convert
+
+- **Word**: `pandoc <slug>-threat-model.md -f gfm -o <slug>-threat-model.docx --metadata title="<title>" --resource-path=<dir of the md>` (needs `pandoc`), with the image reference pointing at the PNG for this conversion.
 - **PDF**: convert Markdown to a standalone HTML file (`pandoc <md> -f gfm -t html5 --no-highlight`, or the Python `markdown` package with the `tables`, `fenced_code` and `sane_lists` extensions), wrapped in `<!doctype html><html><head><meta charset="utf-8"><title>…</title><style>…</style></head><body>…</body></html>` with CSS such as `@page{size:A4;margin:18mm 15mm} body{font-family:"Segoe UI",Arial,sans-serif;font-size:10.5pt;line-height:1.45} table{border-collapse:collapse;width:100%} th,td{border:1px solid #d0d7de;padding:4px 7px;vertical-align:top} th{background:#f0f3f6} pre{white-space:pre-wrap;background:#f6f8fa;padding:8px} tr{page-break-inside:avoid}`. Then print it with headless Edge/Chrome/Chromium:
 
   ```
@@ -150,6 +169,7 @@ List every file created with its path and format. Do not mention files that were
 ## Pitfalls
 
 - Asking the questions after the analysis is done — ask up front so the report can reference the outputs.
+- A report with only DFD tables and no picture, or a Mermaid code block standing in for the picture (see 4a).
 - Inventing threat type strings; Threat Dragon only shows threats whose `type` matches its category list.
 - Bidirectional flows: Threat Dragon can mark them, but `.tm7` flows are one-way — always use two flows.
 - Building a `.tm7` without a user-supplied MTMT template, or putting threats in it (see 3c).
