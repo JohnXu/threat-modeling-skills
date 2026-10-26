@@ -20,6 +20,8 @@ Nothing here depends on bundled scripts: write the files yourself, following the
 
 Ask these three questions, one at a time (use the `ask_user` tool when available, otherwise ask in chat). Skip a question only if the user already answered it in their request or earlier in the session. Do not invent other questions or other choices.
 
+**Multi-select:** the DFD format, the report format and the methodology questions must let the user pick several options. Turn on the ask tool's multi-select option (e.g. `multiSelect: true` in VS Code's `vscode_askQuestions` and Claude Code's `AskUserQuestion`). If the tool has no multi-select option, ask that question in chat instead, listing the choices and saying the user can reply with several, comma-separated (e.g. "STRIDE, LINDDUN"). Never present these as single-choice buttons.
+
 1. **"Generate a DFD file?"** — choices: `Yes` / `No`.
    If Yes, ask the format — choices: `OWASP Threat Dragon (.json) (Recommended, default)`, `Microsoft Threat Modeling Tool (.tm7)`, `Mermaid (.mmd)`, `draw.io (.drawio)`, `PlantUML (.puml)`, `Graphviz DOT (.dot)`. More than one may be chosen. If the user just says "yes" without a format, use Threat Dragon. If the request is itself to build a DFD, do not ask yes/no; ask only the format.
 2. **"Generate a report?"** — choices: `Yes` / `No`.
