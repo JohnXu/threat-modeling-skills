@@ -20,9 +20,9 @@ Nothing here depends on bundled scripts: write the files yourself, following the
 
 Ask these two questions, one at a time (use the `ask_user` tool when available, otherwise ask in chat). Skip a question only if the user already answered it in their request or earlier in the session.
 
-1. **"是否需要生成 DFD 文件？ / Generate a DFD file?"** — choices: `Yes` / `No`.
+1. **"Generate a DFD file?"** — choices: `Yes` / `No`.
    If Yes, ask the format — choices: `OWASP Threat Dragon (.json) (Recommended, default)`, `Microsoft Threat Modeling Tool (.tm7)`, `Mermaid (.mmd)`, `draw.io (.drawio)`, `PlantUML (.puml)`, `Graphviz DOT (.dot)`. More than one may be chosen. If the user just says "yes" without a format, use Threat Dragon. If the request is itself to build a DFD, do not ask yes/no; ask only the format.
-2. **"是否需要生成报告？ / Generate a report?"** — choices: `Yes` / `No`.
+2. **"Generate a report?"** — choices: `Yes` / `No`.
    If Yes, ask the report format — choices: `PDF (Recommended, default)`, `Word (.docx)`. Both may be chosen. If the user just says "yes" without a format, use PDF.
 
 Remember the answers; never re-ask in the same session.
