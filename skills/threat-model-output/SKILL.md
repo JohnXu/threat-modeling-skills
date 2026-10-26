@@ -1,6 +1,6 @@
 ---
 name: threat-model-output
-description: Entry point for any threat-modeling request (STRIDE, LINDDUN, PASTA, attack tree, abuse case, trust boundary, DFD, "threat model this"). Use first, before the methodology skill — asks once whether to generate a data flow diagram (OWASP Threat Dragon by default, or Microsoft Threat Modeling Tool .tm7, Mermaid, draw.io, PlantUML, Graphviz) and whether to generate a report (PDF or Word), then runs the methodology and produces those files.
+description: Entry point for any threat-modeling request (STRIDE, LINDDUN, PASTA, attack tree, abuse case, trust boundary, DFD, "threat model this"). Use first, before the methodology skill — asks once whether to generate a data flow diagram (OWASP Threat Dragon by default, or Microsoft Threat Modeling Tool .tm7, Mermaid, draw.io, PlantUML, Graphviz) and whether to generate a report (PDF or Word), and which methodologies to apply (STRIDE, LINDDUN, PASTA, …; multi-select), then runs them and produces those files.
 ---
 
 # Threat Model Output Options (DFD + Report)
@@ -18,18 +18,19 @@ Nothing here depends on bundled scripts: write the files yourself, following the
 
 ## Step 1 — Ask once, before starting the analysis
 
-Ask these two questions, one at a time (use the `ask_user` tool when available, otherwise ask in chat). Skip a question only if the user already answered it in their request or earlier in the session.
+Ask these three questions, one at a time (use the `ask_user` tool when available, otherwise ask in chat). Skip a question only if the user already answered it in their request or earlier in the session. Do not invent other questions or other choices.
 
 1. **"Generate a DFD file?"** — choices: `Yes` / `No`.
    If Yes, ask the format — choices: `OWASP Threat Dragon (.json) (Recommended, default)`, `Microsoft Threat Modeling Tool (.tm7)`, `Mermaid (.mmd)`, `draw.io (.drawio)`, `PlantUML (.puml)`, `Graphviz DOT (.dot)`. More than one may be chosen. If the user just says "yes" without a format, use Threat Dragon. If the request is itself to build a DFD, do not ask yes/no; ask only the format.
 2. **"Generate a report?"** — choices: `Yes` / `No`.
    If Yes, ask the report format — choices: `PDF (Recommended, default)`, `Word (.docx)`. Both may be chosen. If the user just says "yes" without a format, use PDF.
+3. **"Which threat-modeling methodologies should be applied?"** — multi-select, choices: `STRIDE (Recommended, default)`, `LINDDUN`, `PASTA`, `Attack tree`, `Abuse case`, `Trust boundary`. More than one may be chosen; run them in the order listed. If the user picks nothing or just says "default", use STRIDE. Skip this question if the request already names the methodology (e.g. "run STRIDE").
 
 Remember the answers; never re-ask in the same session.
 
 ## Step 2 — Do the analysis
 
-Run the requested methodology skill(s) and write the Markdown threat model as usual. Save it as `<system-slug>-threat-model.md` (in the user's chosen location, otherwise the working directory).
+Run the chosen methodology skill(s) and write the Markdown threat model as usual. Save it as `<system-slug>-threat-model.md` (in the user's chosen location, otherwise the working directory).
 
 ## Step 3 — Generate the DFD (only if answered Yes)
 
