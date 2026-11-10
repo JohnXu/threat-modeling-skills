@@ -68,7 +68,7 @@ Each worksheet is also packaged as an [Agent Skill](https://agentskills.io/speci
 
 At the start of a threat-modeling session the agent asks **once**: **generate a DFD file?**, **generate a report?** (format: PDF or Word), and **which methodologies to apply?** (multi-select: STRIDE, LINDDUN, PASTA, attack tree, abuse case, trust boundary; default STRIDE). The individual methodology skills contain no such questions.
 
-- DFD: defaults to an [OWASP Threat Dragon](https://github.com/OWASP/threat-dragon) v2 `.json` model (elements, flows, trust boundaries, and the threats found, openable in Threat Dragon). A Microsoft Threat Modeling Tool `.tm7` file is also available (requires MTMT installed and a template model saved from it; MTMT then generates the threats itself), as are Mermaid, draw.io, PlantUML, and Graphviz DOT.
+- DFD: defaults to a Microsoft Threat Modeling Tool `.tm7` file (requires MTMT installed and a template model saved from it; MTMT then generates the threats itself). An [OWASP Threat Dragon](https://github.com/OWASP/threat-dragon) v2 `.json` model (elements, flows, trust boundaries, and the threats found, openable in Threat Dragon) is also available.
 - Report: renders the Markdown threat model to PDF or Word (.docx).
 
 `threat-model-output` is a single `SKILL.md` with no bundled scripts; the agent writes the files itself using the verified formats it contains. PDF output needs `pandoc` (or the Python `markdown` package) and Edge, Chrome, or Chromium; Word needs `pandoc`; the `.tm7` output needs Microsoft Threat Modeling Tool installed and a template model saved from it.

@@ -1,6 +1,6 @@
 ---
 name: threat-model-output
-description: Entry point for any threat-modeling request (STRIDE, LINDDUN, PASTA, attack tree, abuse case, trust boundary, DFD, "threat model this"). Use first, before the methodology skill — asks once whether to generate a data flow diagram (OWASP Threat Dragon by default, or Microsoft Threat Modeling Tool .tm7, Mermaid, draw.io, PlantUML, Graphviz) and whether to generate a report (PDF or Word), and which methodologies to apply (STRIDE, LINDDUN, PASTA, …; multi-select), then runs them and produces those files.
+description: Entry point for any threat-modeling request (STRIDE, LINDDUN, PASTA, attack tree, abuse case, trust boundary, DFD, "threat model this"). Use first, before the methodology skill — asks once whether to generate a data flow diagram (Microsoft Threat Modeling Tool .tm7 by default, or OWASP Threat Dragon .json) and whether to generate a report (PDF or Word), and which methodologies to apply (STRIDE, LINDDUN, PASTA, …; multi-select), then runs them and produces those files.
 ---
 
 # Threat Model Output Options (DFD + Report)
@@ -11,7 +11,7 @@ This is the single place where output choices are asked. The methodology skills 
 
 Two optional deliverables beyond the Markdown threat model:
 
-1. **DFD file** — default **OWASP Threat Dragon v2** (`.json`, contains the threats found). Also offered: **Microsoft Threat Modeling Tool** (`.tm7`), Mermaid, draw.io, PlantUML, Graphviz DOT.
+1. **DFD file** — default **Microsoft Threat Modeling Tool** (`.tm7`). Also offered: **OWASP Threat Dragon v2** (`.json`, contains the threats found).
 2. **Report** — the Markdown threat model rendered to **PDF** or **Word (.docx)**.
 
 Nothing here depends on bundled scripts: write the files yourself, following the verified formats below. Use Python or any scripting you have to generate the files (do not hand-edit large XML/JSON).
@@ -30,7 +30,7 @@ choices:  ["1. STRIDE (Recommended)", "2. LINDDUN", "3. PASTA", "4. Attack tree"
 Accept numbers or names in the free-form answer. The Yes/No questions use plain single-choice buttons.
 
 1. **"Generate a DFD file?"** — choices: `Yes` / `No`.
-   If Yes, ask the format — choices: `OWASP Threat Dragon (.json) (Recommended, default)`, `Microsoft Threat Modeling Tool (.tm7)`, `Mermaid (.mmd)`, `draw.io (.drawio)`, `PlantUML (.puml)`, `Graphviz DOT (.dot)`. More than one may be chosen. If the user just says "yes" without a format, use Threat Dragon. If the request is itself to build a DFD, do not ask yes/no; ask only the format.
+   If Yes, ask the format — choices: `Microsoft Threat Modeling Tool (.tm7) (Recommended, default)`, `OWASP Threat Dragon (.json)`. Both may be chosen. If the user just says "yes" without a format, use Microsoft Threat Modeling Tool. If the request is itself to build a DFD, do not ask yes/no; ask only the format.
 2. **"Generate a report?"** — choices: `Yes` / `No`.
    If Yes, ask the report format — choices: `PDF (Recommended, default)`, `Word (.docx)`. Both may be chosen. If the user just says "yes" without a format, use PDF.
 3. **"Which threat-modeling methodologies should be applied?"** — multi-select, choices: `STRIDE (Recommended, default)`, `LINDDUN`, `PASTA`, `Attack tree`, `Abuse case`, `Trust boundary`. More than one may be chosen; run them in the order listed. If the user picks nothing or just says "default", use STRIDE. Skip this question if the request already names the methodology (e.g. "run STRIDE").
@@ -81,7 +81,7 @@ Open it in Threat Dragon via *Open an existing threat model*.
 
 **Requirements (check first, never install for the user):**
 
-- MTMT is Windows-only. Check it is installed: a Start Menu entry under `%APPDATA%\Microsoft\Windows\Start Menu\Programs\Microsoft Threat Modeling Tool` (ClickOnce `.appref-ms`), or `TMT7.exe` under `Program Files*\Microsoft Threat Modeling Tool*`. If it is missing, recommend https://aka.ms/threatmodelingtool and offer another format meanwhile.
+- MTMT is Windows-only. Check it is installed: a Start Menu entry under `%APPDATA%\Microsoft\Windows\Start Menu\Programs\Microsoft Threat Modeling Tool` (ClickOnce `.appref-ms`), or `TMT7.exe` under `Program Files*\Microsoft Threat Modeling Tool*`. If it is missing, recommend https://aka.ms/threatmodelingtool and offer OWASP Threat Dragon meanwhile.
 - **A template model is required.** A `.tm7` must embed MTMT's knowledge base (threat catalog). It is Microsoft's, so it is not shipped here and must not be hand-made: only reusing a knowledge base saved by the user's own MTMT has been verified to open in MTMT 7.3. Ask the user once to open MTMT → *Create A Model* → pick the template → *File → Save Model*, and give you that `.tm7` path. Reuse it afterwards.
 - **Choose the template with the right rules.** The diagram uses MTMT's *generic* element types (`GE.P`, `GE.EI`, `GE.DS`, `GE.TB.B`, `GE.DF`), and MTMT only generates threats for elements that a template's rules target. Ask the user to pick **"SDL TM Knowledge Base (Core)"** (the default `Default.tb7`: 47 rules, all on the generic types, many triggered by flows crossing trust boundaries). The *Azure Threat Model Template* targets specific stencils (`SE.P.TMCore.WebApp`, `SE.DS.TMCore.SQL`, …), so a generic diagram gets almost no threats from it (verified: the diagram opened but the Analysis view was empty). You can tell which template a `.tm7` carries from `<a:Manifest>…<a:Name>…</a:Name>` inside `<KnowledgeBase>`; if it is not the SDL core one and the user wants threats, ask them to re-save the model from the SDL core template.
 - (`.tb7` files are templates, opened through *Open Template*; they are not models and are not what you generate.)
@@ -125,18 +125,15 @@ Each item in `<Borders>` / `<Lines>` is:
 
 Open it in MTMT via *Open A Model*. Never claim a `.tm7` opens in MTMT unless it was actually opened there; say it was generated from the user's template and ask them to confirm. If MTMT shows "corrupted or incompatible", check the pitfalls above (z:Id duplicates, missing `Out Of Scope`, port `None`, missing `Validations`, edited `KnowledgeBase`).
 
-### 3d. Mermaid, DOT, PlantUML, draw.io
+### 3d. Graphviz DOT (internal helper, not offered as an output choice)
 
-Flows from the neutral model; use a `subgraph`/cluster per trust boundary, label each flow `Name (PROTOCOL)`.
+Only used to render the report picture in 4a. Use a cluster per trust boundary, label each flow `Name (PROTOCOL)`.
 
-- **Mermaid** (`.mmd`): `flowchart LR`; actor `id["Name"]`, process `id(("Name"))`, store `id[("Name")]`; boundary `subgraph tb0["Name (trust boundary)"] … end`; flow `a -->|"label"| b`. Sanitize ids to `\w` only.
 - **Graphviz DOT** (`.dot`): `digraph DFD { rankdir=LR; … }`; actor `shape=box`, process `shape=ellipse`, store `shape=cylinder`; boundary `subgraph cluster_0 { label="Name (trust boundary)"; style=dashed; color=red; … }`; flow `a -> b [label="…"];`.
-- **PlantUML** (`.puml`): `@startuml` / `left to right direction`; actor `rectangle "Name" as id`, process `usecase "Name" as id`, store `database "Name" as id`; boundary `rectangle "Name (trust boundary)" #line.dashed;line:red { … }`; flow `a --> b : label`.
-- **draw.io** (`.drawio`): `<mxfile><diagram name="DFD"><mxGraphModel><root><mxCell id="0"/><mxCell id="1" parent="0"/>` then one `<mxCell … vertex="1" parent="1"><mxGeometry x y width height as="geometry"/></mxCell>` per element and boundary (boundary style `rounded=1;dashed=1;fillColor=none;strokeColor=#CC0000;verticalAlign=top;align=left;`, process style `ellipse;whiteSpace=wrap;html=1;`, actor `rounded=0;whiteSpace=wrap;html=1;`, store `shape=partialRectangle;whiteSpace=wrap;html=1;left=0;right=0;fillColor=none;`), and one `<mxCell … edge="1" parent="1" source="…" target="…"><mxGeometry relative="1" as="geometry"/></mxCell>` per flow with `style="endArrow=block;html=1;edgeStyle=orthogonalEdgeStyle;"`. XML-escape attribute values.
 
 ### 3e. Finish the DFD step
 
-Tell the user how to open each file, and reference the DFD file(s) from the Markdown report. If you cannot run code at all, give Mermaid inline and say the other exports were skipped.
+Tell the user how to open each file, and reference the DFD file(s) from the Markdown report. If you cannot run code at all, present the DFD as the elements / flows / boundaries tables and say the file exports were skipped.
 
 ## Step 4 — Generate the report (only if answered Yes)
 
