@@ -1,4 +1,4 @@
-# threat-modeling-worksheets
+# threat-modeling-skills
 
 Seven worksheets covering the methodologies people actually use for threat modeling, plus five worked examples that show what the output looks like for real systems.
 
